@@ -1,4 +1,4 @@
-import { IApiElementModel, ImageRowPropertiesModel } from "@/api";
+import { IApiElementModel, ImageRowPropertiesModel } from "@/api/model";
 import { DictionaryItem, getSpacingClass, ImagesToImageMap } from "@/utls";
 import Image from "next/image";
 

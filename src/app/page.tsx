@@ -1,4 +1,4 @@
-import { HomeContentResponseModel } from "@/api";
+import { HomeContentResponseModel } from "@/api/model";
 import { PageHeader } from "@/components/partials/pageHeader";
 import { getPage } from "@/umbraco";
 import { GetComponent } from "@/umbraco/components/GetComponent";

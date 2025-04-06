@@ -1,4 +1,4 @@
-import { IApiElementModel, LatestArticlesRowElementModel, LatestArticlesRowSettingsElementModel } from "@/api";
+import { IApiElementModel, LatestArticlesRowElementModel, LatestArticlesRowSettingsElementModel } from "@/api/model";
 import { getArticles } from "@/umbraco";
 import { DictionaryItem, getSpacingClass } from "@/utls";
 import { LatestArticlesRow } from "./latestAriclesRow";

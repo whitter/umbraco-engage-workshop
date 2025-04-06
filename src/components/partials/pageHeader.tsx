@@ -1,4 +1,4 @@
-import { ArticleControlsPropertiesModel, HeaderControlsPropertiesModel, IApiContentResponseModel, MainImageControlsPropertiesModel } from "@/api"
+import { ArticleControlsPropertiesModel, HeaderControlsPropertiesModel, IApiContentResponseModel, MainImageControlsPropertiesModel } from "@/api/model"
 import { ImagesToImageMap } from "@/utls";
 
 export const PageHeader = (props: { content: IApiContentResponseModel, isArticle?: boolean }) => {
@@ -20,7 +20,7 @@ export const PageHeader = (props: { content: IApiContentResponseModel, isArticle
                                 <>
                                     {headerControls && headerControls.subtitle && <h2 className="subheading mb-4">{headerControls.subtitle}</h2>}
                                     <span className="meta">
-                                        {articleControls.articleDate && articleControls.articleDate.toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" })}
+                                        {articleControls.articleDate && new Date(articleControls.articleDate).toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" })}
                                     </span>
                                     {articleControls.categories && articleControls.categories.length > 0 && (
                                         <>

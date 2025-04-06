@@ -1,5 +1,5 @@
 "use client";
-import { IApiElementModel, ImageCarouselRowPropertiesModel, ImageCarouselRowSettingsPropertiesModel } from "@/api";
+import { IApiElementModel, ImageCarouselRowPropertiesModel, ImageCarouselRowSettingsPropertiesModel } from "@/api/model";
 import { DictionaryItem, getSpacingClass, ImagesToImagesMap } from "@/utls";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";

@@ -1,5 +1,5 @@
 "use client";
-import { CodeSnippetRowPropertiesModel, CodeSnippetRowSettingsPropertiesModel, IApiElementModel } from "@/api";
+import { CodeSnippetRowPropertiesModel, CodeSnippetRowSettingsPropertiesModel, IApiElementModel } from "@/api/model";
 import { DictionaryItem, getSpacingClass } from "@/utls";
 import Highlight from 'react-highlight'
 

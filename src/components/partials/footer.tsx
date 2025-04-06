@@ -1,4 +1,4 @@
-import { ApiBlockItemModel, HomeContentResponseModel, IconLinkRowElementModel } from "@/api"
+import { ApiBlockItemModel, HomeContentResponseModel, IconLinkRowElementModel } from "@/api/model"
 import { DictionaryItem, getDictionValue, ImagesToImageMap, LinksToLinkMap } from "@/utls";
 import Image from "next/image";
 

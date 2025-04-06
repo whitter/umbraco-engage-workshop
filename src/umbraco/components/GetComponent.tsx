@@ -1,4 +1,4 @@
-import { ApiBlockItemModel } from "@/api";
+import { ApiBlockItemModel } from "@/api/model";
 import { LatestArticles } from "@/components/blockList/latestArticles";
 import { ImageRow } from "@/components/blockList/imageRow";
 import { RichTextRow } from "@/components/blockList/richTextRow";

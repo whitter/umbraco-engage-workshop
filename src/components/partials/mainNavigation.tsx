@@ -1,4 +1,4 @@
-import { HomeContentResponseModel } from "@/api"
+import { HomeContentResponseModel } from "@/api/model"
 import { getNavigation } from "@/umbraco";
 import { DictionaryItem, getDictionValue } from "@/utls"
 

@@ -1,4 +1,4 @@
-import { ArticleContentResponseModel, AuthorContentResponseModel } from "@/api";
+import { ArticleContentResponseModel, AuthorContentResponseModel } from "@/api/model";
 import { DictionaryItem, getDictionValue } from "@/utls";
 
 export const LatestArticlesRow = (props : {dictionary: DictionaryItem[], article: ArticleContentResponseModel}) => {

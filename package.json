@@ -7,10 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "openapi-ts"
+    "generate": "node ./node_modules/orval/dist/bin/orval.js"
   },
   "dependencies": {
-    "@hey-api/client-next": "^0.2.4",
     "bootstrap": "^5.3.3",
     "html-react-parser": "^5.2.2",
     "next": "15.2.4",
@@ -22,11 +21,11 @@
     "swiper": "^11.2.6"
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.64.14",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-highlight": "^0.12.8",
+    "orval": "^7.7.0",
     "typescript": "^5"
   }
 }

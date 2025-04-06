@@ -1,31 +1,87 @@
-import { ArticleContentResponseModel, ContentService, VisibilityControlsContentResponseModel } from "@/api";
+import { getContent20, getContentItemByPath20 } from "@/api/content/content";
+import { ArticleContentResponseModel, ContentContentResponseModel, PagedIApiContentResponseModel, VisibilityControlsContentResponseModel } from "@/api/model";
 
 export async function getPage<T>(handle: string): Promise<T | undefined> {
 
-  const d = await ContentService.getContentItemByPath20({
-    path: handle,
+  const response = await getContentItemByPath20(handle, {}, {});
+
+  if(response.status === 200) {
+
+    const page : T = response.data as T;
+    return page;
+
+  }
+  else {
+    console.error("Error status", response.status);
+    console.error("Error fetching page content", response.data);
+  }
+}
+
+export async function getContentPages(): Promise<ContentContentResponseModel[]> {
+
+  const response = await getContent20({
+    filter: [`contentType:content`],
+  }, {
+    cache: 'no-store'
   });
 
-  const page : T = d as T;
-  return page;
+  if(response.status === 200) {
 
+    const data : PagedIApiContentResponseModel = response.data as PagedIApiContentResponseModel;
+    return data.items.map((item) => item as ContentContentResponseModel);
+
+  }
+  else {
+    console.error("Error status", response.status);
+    console.error("Error fetching page content", response.data);
+    return [];
+  }
 }
 
 export async function getArticles(id?: string): Promise<ArticleContentResponseModel[]> {
 
     if(!id) return [];
 
-    const pages = await ContentService.getContent20({
+    const response = await getContent20({
         fetch: `children:${id}`
+    }, {
+      next: {
+        tags: ['articles'],
+        revalidate: false
+      }
     });
 
-    return pages.items.map((item) => item as ArticleContentResponseModel);
+    if(response.status === 200) {
+
+      const data : PagedIApiContentResponseModel = response.data as PagedIApiContentResponseModel;
+      return data.items.map((item) => item as ArticleContentResponseModel);
+  
+    }
+    else {
+      console.error("Error status", response.status);
+      console.error("Error fetching page content", response.data);
+      return [];
+    }
 }
   
 export async function getNavigation(): Promise<VisibilityControlsContentResponseModel[]> {
-    const pages = await ContentService.getContent20({
-        fetch: "children:/"
+
+    const response = await getContent20({
+        fetch: "children:/",
+        sort: ["sortOrder:asc"]
+    }, {
+      next: {
+        tags: ['navigation'],
+      }
     });
 
-    return pages.items.map((item) => item as VisibilityControlsContentResponseModel).filter(item => item.properties?.hideFromTopNavigation === false) as VisibilityControlsContentResponseModel[];
+    if(response.status === 200) {
+      const data : PagedIApiContentResponseModel = response.data as PagedIApiContentResponseModel;
+      return data.items.map((item) => item as VisibilityControlsContentResponseModel).filter(item => item.properties?.hideFromTopNavigation === false) as VisibilityControlsContentResponseModel[];
+    }
+    else {
+      console.error("Error status", response.status);
+      console.error("Error fetching page content", response.data);
+      return [];
+    }
 }

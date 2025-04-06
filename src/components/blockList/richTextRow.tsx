@@ -1,4 +1,4 @@
-import { IApiElementModel, RichTextRowElementModel } from "@/api";
+import { IApiElementModel, RichTextRowElementModel } from "@/api/model";
 import { DictionaryItem, getSpacingClass } from "@/utls";
 import HTMLParser from 'html-react-parser';
 

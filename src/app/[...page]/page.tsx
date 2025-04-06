@@ -1,8 +1,19 @@
-import { ContentContentResponseModel } from "@/api";
+import { ContentContentResponseModel } from "@/api/model";
 import { PageHeader } from "@/components/partials/pageHeader";
-import { getPage } from "@/umbraco";
+import { getContentPages, getPage } from "@/umbraco";
 import { GetComponent } from "@/umbraco/components/GetComponent";
 import { getDictionaryItems } from "@/utls";
+
+export async function generateStaticParams() {
+
+  const pages = await getContentPages();
+  const allSegments = pages.map((page) => ({
+    page: page.route?.path?.split('/').filter((segment) => segment !== '') || [],
+  })) 
+
+  return allSegments;
+}
+
 
 export default async function Page({ params }: { params: Promise<{ page: string[] }> }) {
 

@@ -1,4 +1,4 @@
-import { IApiElementModel, VideoRowPropertiesModel, VideoRowSettingsPropertiesModel } from "@/api";
+import { IApiElementModel, VideoRowPropertiesModel, VideoRowSettingsPropertiesModel } from "@/api/model";
 import { DictionaryItem, getSpacingClass, getYouTubeVideoId } from "@/utls";
 
 export const VideoRow = async (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo: number }) => {
