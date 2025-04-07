@@ -38,6 +38,8 @@ export const LatestArticlesRow = (props : {dictionary: DictionaryItem[], article
                     ))}
                 </>
             )}
+
+            <hr/>
         </div>
     )
 

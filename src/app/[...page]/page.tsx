@@ -28,8 +28,8 @@ export default async function Page({ params }: { params: Promise<{ page: string[
         <div className="container">
           <div className="row">
             <div className="col-lg-8 col-md-10 mx-auto">
-              {pageContent?.properties?.contentRows?.items?.map((item) => {
-                return GetComponent(dictionaryItems, item);
+              {pageContent?.properties?.contentRows?.items?.map((item, index) => {
+                return GetComponent(dictionaryItems, item, index);
               })}
             </div>
           </div>
