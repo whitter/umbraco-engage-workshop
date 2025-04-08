@@ -1,3 +1,5 @@
+import { TranslationModel } from "./api-clean/model";
+import { getApiV1DictionaryGetdictionarytranslations } from "./api-clean/translation/translation";
 import { ApiLinkModel, LinkTypeModel, IApiMediaWithCropsModel, SpacingPropertiesPropertiesModel, IApiElementModel } from "./api/model";
 
 export interface Link {
@@ -71,28 +73,24 @@ export const ImagesToImagesMap = (source?: IApiMediaWithCropsModel[] | null): Im
   
     return links || [];
   };
-
-export interface DictionaryItem {
-    Id: string,
-    Key: string,
-    Value: string
-  }
   
-export const getDictionValue = (dictionaryItems: DictionaryItem[] | undefined, key: string): string | undefined => {
+export const getDictionValue = (dictionaryItems: TranslationModel[] | undefined, key: string): string | undefined => {
     if(dictionaryItems === undefined) return undefined;
-    return dictionaryItems.find(item => item.Key === key)?.Value;
+    const output = dictionaryItems.find(item => item.key === key)?.value;
+    return output === null ? undefined : output;
 }
 
-export const getDictionaryItems = async (): Promise<DictionaryItem[]> => {
+export const getDictionaryItems = async (): Promise<TranslationModel[]> => {
     try {
-      const response = await fetch('http://localhost:23142/api/v1.0/dictionary/GetDictionaryTranslations');
+      const response = await getApiV1DictionaryGetdictionarytranslations();
   
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
   
-      const dictionaryItems: DictionaryItem[] = await response.json();
+      const dictionaryItems = await response.data;
       return dictionaryItems;
+
     } catch (error) {
       console.error("Error fetching dictionary items:", error);
       return [];

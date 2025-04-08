@@ -1,14 +1,15 @@
 "use client";
 import { IApiElementModel, ImageCarouselRowPropertiesModel, ImageCarouselRowSettingsPropertiesModel } from "@/api/model";
-import { DictionaryItem, getSpacingClass, ImagesToImagesMap } from "@/utls";
+import { getSpacingClass, ImagesToImagesMap } from "@/utls";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
+import { TranslationModel } from "@/api-clean/model";
 
-export const ImageCarouselRow = (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
+export const ImageCarouselRow = (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
     
     const content = props.content?.properties as ImageCarouselRowPropertiesModel;
     const settings = props.settings?.properties as ImageCarouselRowSettingsPropertiesModel;

@@ -1,8 +1,9 @@
+import { TranslationModel } from "@/api-clean/model";
 import { IApiElementModel, ImageRowPropertiesModel } from "@/api/model";
-import { DictionaryItem, getSpacingClass, ImagesToImageMap } from "@/utls";
+import { getSpacingClass, ImagesToImageMap } from "@/utls";
 import Image from "next/image";
 
-export const ImageRow = async (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
+export const ImageRow = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
 
     const content = props.content?.properties as ImageRowPropertiesModel;
 

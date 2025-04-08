@@ -34,5 +34,5 @@ module.exports = {
       input: {
         target: 'http://localhost:23142/umbraco/swagger/clean-starter/swagger.json?urls.primaryName=Clean+starter+kit',
       },
-    },
+    }
   };

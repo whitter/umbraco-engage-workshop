@@ -1,7 +1,8 @@
+import { TranslationModel } from "@/api-clean/model";
 import { ArticleContentResponseModel, AuthorContentResponseModel } from "@/api/model";
-import { DictionaryItem, getDictionValue } from "@/utls";
+import { getDictionValue } from "@/utls";
 
-export const LatestArticlesRow = (props : {dictionary: DictionaryItem[], article: ArticleContentResponseModel}) => {
+export const LatestArticlesRow = (props : {dictionary: TranslationModel[], article: ArticleContentResponseModel}) => {
 
     const { article, dictionary } = props;
 

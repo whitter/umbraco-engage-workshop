@@ -1,8 +1,9 @@
+import { TranslationModel } from "@/api-clean/model";
 import { IApiElementModel, RichTextRowElementModel } from "@/api/model";
-import { DictionaryItem, getSpacingClass } from "@/utls";
+import { getSpacingClass } from "@/utls";
 import HTMLParser from 'html-react-parser';
 
-export const RichTextRow = async (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
+export const RichTextRow = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
 
     const content = props.content as RichTextRowElementModel;
 

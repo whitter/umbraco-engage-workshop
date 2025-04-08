@@ -2,10 +2,10 @@ import { ApiBlockItemModel } from "@/api/model";
 import { LatestArticles } from "@/components/blockList/latestArticles";
 import { ImageRow } from "@/components/blockList/imageRow";
 import { RichTextRow } from "@/components/blockList/richTextRow";
-import { DictionaryItem } from "@/utls";
 import { ImageCarouselRow } from "@/components/blockList/imageCarouselRow";
 import { VideoRow } from "@/components/blockList/videoRow";
 import { CodeSnippetRow } from "@/components/blockList/codeSnippetRow";
+import { TranslationModel } from "@/api-clean/model";
 
 const components = [
   { contentType: "codeSnippetRow", component: CodeSnippetRow }, 
@@ -16,7 +16,7 @@ const components = [
   { contentType: "videoRow", component: VideoRow },
 ];
 
-export function GetComponent(dictionary: DictionaryItem[], item: ApiBlockItemModel, index: number, pageNo?: number) {
+export function GetComponent(dictionary: TranslationModel[], item: ApiBlockItemModel, index: number, pageNo?: number) {
 
   const matchedComponent = components.find(c => c.contentType === item.content?.contentType);
 

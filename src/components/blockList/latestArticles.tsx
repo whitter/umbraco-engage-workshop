@@ -1,11 +1,12 @@
 import { IApiElementModel, LatestArticlesRowElementModel, LatestArticlesRowSettingsElementModel } from "@/api/model";
 import { getArticles } from "@/umbraco";
-import { DictionaryItem, getSpacingClass } from "@/utls";
+import { getSpacingClass } from "@/utls";
 import { LatestArticlesRow } from "./latestAriclesRow";
 import { Pagination } from "../partials/pagination";
 import { ARTICLES_PAGESIZE } from "@/app/blog/constants";
+import { TranslationModel } from "@/api-clean/model";
 
-export const LatestArticles = async (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
+export const LatestArticles = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
 
     const { dictionary } = props;
     const pageNo = props.pageNo ?? 1;
