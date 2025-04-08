@@ -16,12 +16,12 @@ const components = [
   { contentType: "videoRow", component: VideoRow },
 ];
 
-export function GetComponent(dictionary: DictionaryItem[], item: ApiBlockItemModel, index: number) {
+export function GetComponent(dictionary: DictionaryItem[], item: ApiBlockItemModel, index: number, pageNo?: number) {
 
   const matchedComponent = components.find(c => c.contentType === item.content?.contentType);
 
   if(matchedComponent === undefined) console.log(`Component ${item.content?.contentType} not found`)
 
   // If a matching component is found, instantiate it with the props
-  return matchedComponent ? <matchedComponent.component key={index} dictionary={dictionary} content={item.content} settings={item.settings} pageNo={1} /> : null;
+  return matchedComponent ? <matchedComponent.component key={index} dictionary={dictionary} content={item.content} settings={item.settings} pageNo={pageNo} /> : null;
 }

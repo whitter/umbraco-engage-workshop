@@ -17,4 +17,22 @@ module.exports = {
         target: 'http://localhost:23142/umbraco/swagger/delivery/swagger.json',
       },
     },
+    'clean-starter-transfomer': {
+      output: {
+        mode: 'tags-split',
+        target: './src/api-clean/client.ts',
+        baseUrl: 'http://localhost:23142/',
+        schemas: './src/api-clean/model',
+        client: 'fetch',
+        override: {
+            mutator: {
+                path: './src/custom-fetch.ts',
+                name: 'customFetch',
+            },
+        },
+      },
+      input: {
+        target: 'http://localhost:23142/umbraco/swagger/clean-starter/swagger.json?urls.primaryName=Clean+starter+kit',
+      },
+    },
   };

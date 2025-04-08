@@ -23,19 +23,23 @@ export const PageHeader = async (props: { content: IApiContentResponseModel, isA
                                 <>
                                     {headerControls && headerControls.subtitle && <h2 className="subheading mb-4">{headerControls.subtitle}</h2>}
                                     <span className="meta">
-                                        {getDictionValue(dictionary, "Article.Posted")}
-                                        &nbsp;
-                                        {articleControls.author && articleControls.author.length > 0 && (
+                                        {articleControls.articleDate && (
                                             <>
-                                                {getDictionValue(dictionary, "Article.By")}
+                                                {getDictionValue(dictionary, "Article.Posted")}
                                                 &nbsp;
-                                                {articleControls.author[0].name}
+                                                {articleControls.author && articleControls.author.length > 0 && (
+                                                    <>
+                                                        {getDictionValue(dictionary, "Article.By")}
+                                                        &nbsp;
+                                                        {articleControls.author[0].name}
+                                                    </>
+                                                )}
+                                                &nbsp;
+                                                {getDictionValue(dictionary, "Article.On")}
+                                                &nbsp;
+                                                {articleControls.articleDate && new Date(articleControls.articleDate).toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" })}
                                             </>
                                         )}
-                                        &nbsp;
-                                        {getDictionValue(dictionary, "Article.On")}
-                                        &nbsp;
-                                        {articleControls.articleDate && new Date(articleControls.articleDate).toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" })}
                                     </span>
                                     {articleControls.categories && articleControls.categories.length > 0 && (
                                         <>

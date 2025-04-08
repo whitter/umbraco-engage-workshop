@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 
-export const ImageCarouselRow = (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo: number }) => {
+export const ImageCarouselRow = (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
     
     const content = props.content?.properties as ImageCarouselRowPropertiesModel;
     const settings = props.settings?.properties as ImageCarouselRowSettingsPropertiesModel;

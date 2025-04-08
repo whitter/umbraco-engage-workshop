@@ -3,7 +3,7 @@ import { CodeSnippetRowPropertiesModel, CodeSnippetRowSettingsPropertiesModel, I
 import { DictionaryItem, getSpacingClass } from "@/utls";
 import Highlight from 'react-highlight'
 
-export const CodeSnippetRow = (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo: number }) => {
+export const CodeSnippetRow = (props: { dictionary: DictionaryItem[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
 
     const content = props.content?.properties as CodeSnippetRowPropertiesModel;
     const settings = props.settings?.properties as CodeSnippetRowSettingsPropertiesModel;
