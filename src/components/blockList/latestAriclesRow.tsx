@@ -1,6 +1,7 @@
 import { TranslationModel } from "@/api-clean/model";
 import { ArticleContentResponseModel, AuthorContentResponseModel } from "@/api/model";
 import { getDictionValue } from "@/utls";
+import Link from "next/link";
 
 export const LatestArticlesRow = (props : {dictionary: TranslationModel[], article: ArticleContentResponseModel}) => {
 
@@ -17,10 +18,10 @@ export const LatestArticlesRow = (props : {dictionary: TranslationModel[], artic
 
     return (
         <div key={article.id} className="post-preview">
-            <a href={article.route?.path}>
+            <Link href={article.route?.path!}>
                 <h2 className="post-title">{article.properties?.title ? article.properties.title : article.name}</h2>
                 {article.properties?.subtitle && <h3 className="post-subtitle">{article.properties.subtitle}</h3>}
-            </a>
+            </Link>
             <p className="post-meta">
                 {getDictionValue(dictionary, "Article.Posted")}
                 {getDictionValue(dictionary, "Article.By")} {author?.name}

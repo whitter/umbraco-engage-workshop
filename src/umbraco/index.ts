@@ -1,5 +1,5 @@
 import { getContent20, getContentItemByPath20 } from "@/api/content/content";
-import { ArticleContentResponseModel, ContentContentResponseModel, PagedIApiContentResponseModel, VisibilityControlsContentResponseModel } from "@/api/model";
+import { ArticleContentResponseModel, AuthorContentResponseModel, ContentContentResponseModel, PagedIApiContentResponseModel, VisibilityControlsContentResponseModel } from "@/api/model";
 
 export async function getPage<T>(handle: string): Promise<T | undefined> {
 
@@ -60,6 +60,30 @@ export async function getArticles(): Promise<ArticleContentResponseModel[]> {
       console.error("Error fetching page content", response.data);
       return [];
     }
+}
+
+export async function getAuthors(): Promise<AuthorContentResponseModel[]> {
+
+  const response = await getContent20({
+    filter: [`contentType:author`],
+  }, {
+    next: {
+      tags: ['authors'],
+      revalidate: false
+    }
+  });
+
+  if(response.status === 200) {
+
+    const data : PagedIApiContentResponseModel = response.data as PagedIApiContentResponseModel;
+    return data.items.map((item) => item as AuthorContentResponseModel);
+
+  }
+  else {
+    console.error("Error status", response.status);
+    console.error("Error fetching page content", response.data);
+    return [];
+  }
 }
   
 export async function getNavigation(): Promise<VisibilityControlsContentResponseModel[]> {
