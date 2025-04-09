@@ -38,12 +38,10 @@ export async function getContentPages(): Promise<ContentContentResponseModel[]> 
   }
 }
 
-export async function getArticles(id?: string): Promise<ArticleContentResponseModel[]> {
-
-    if(!id) return [];
+export async function getArticles(): Promise<ArticleContentResponseModel[]> {
 
     const response = await getContent20({
-        fetch: `children:${id}`
+      filter: [`contentType:article`],
     }, {
       next: {
         tags: ['articles'],

@@ -6,6 +6,7 @@
  * OpenAPI spec version: Latest
  */
 
+export * from './emailForm';
 export * from './getApiV1SearchGetSearchResultsParams';
 export * from './searchResultsItemModel';
 export * from './searchResultsModel';

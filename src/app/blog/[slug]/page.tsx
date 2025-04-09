@@ -1,9 +1,24 @@
-import { ArticleContentModel, ArticleListContentModel } from "@/api/model";
+import { ArticleContentModel, ArticleListContentModel, SEocontrolsContentResponseModel } from "@/api/model";
 import { PageHeader } from "@/components/partials/pageHeader";
 import { getArticles, getPage } from "@/umbraco";
 import { GetComponent } from "@/umbraco/components/GetComponent";
 import { getDictionaryItems } from "@/utls";
 import { ARTICLES_PAGESIZE, ARTICLES_ROOT_SEGENT_NAME } from "../constants";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getMeta } from "@/helpers/metaHelper";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) : Promise<Metadata> {
+
+  const { slug } = await params;
+  const { articleSlug } = processSlugs(slug);
+
+  const metaContent = articleSlug ? await getPage<SEocontrolsContentResponseModel>(`${ARTICLES_ROOT_SEGENT_NAME}/${articleSlug}`) : await getPage<SEocontrolsContentResponseModel>(`${ARTICLES_ROOT_SEGENT_NAME}`);
+
+  if (!metaContent) return notFound();
+
+  return getMeta(metaContent);
+}
 
 export async function generateStaticParams() {
 

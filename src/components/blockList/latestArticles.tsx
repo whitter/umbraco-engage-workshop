@@ -19,7 +19,7 @@ export const LatestArticles = async (props: { dictionary: TranslationModel[], co
     const pageSize = ARTICLES_PAGESIZE;
 
     //really we should do this sorting on the server
-    const allArticles = (await getArticles(content.properties?.articleList?.id))?.sort((a, b) => {
+    const allArticles = (await getArticles())?.sort((a, b) => {
         const dateA = a.properties?.articleDate ? new Date(a.properties.articleDate).getTime() : 0;
         const dateB = b.properties?.articleDate ? new Date(b.properties.articleDate).getTime() : 0;
         

@@ -1,5 +1,6 @@
 import { ContentContentResponseModel, SEocontrolsContentResponseModel } from "@/api/model";
 import { PageHeader } from "@/components/partials/pageHeader";
+import { getMeta } from "@/helpers/metaHelper";
 import { getContentPages, getPage } from "@/umbraco";
 import { GetComponent } from "@/umbraco/components/GetComponent";
 import { getDictionaryItems } from "@/utls";
@@ -21,20 +22,9 @@ export async function generateMetadata({ params }: { params: Promise<{ page: str
   const { page } = await params;
   const metaContent = await getPage<SEocontrolsContentResponseModel>(`/${page.join('/')}/`);
 
-  const shouldIndex = metaContent?.properties?.isIndexable !== false;
-  const shouldFollow = metaContent?.properties?.isFollowable !== false;
+  if (!metaContent) return notFound();
 
-  if (!page) return notFound();
-
-  return {
-    title: metaContent?.properties?.metaName || metaContent?.name || '',
-    description: metaContent?.properties?.metaDescription || '',
-    keywords: metaContent?.properties?.metaKeywords || '',
-    robots: {
-      index: shouldIndex,
-      follow: shouldFollow,
-    },
-  };
+  return getMeta(metaContent);
 }
 
 
