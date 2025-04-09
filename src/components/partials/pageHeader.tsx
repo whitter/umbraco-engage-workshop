@@ -12,7 +12,7 @@ export const PageHeader = async (props: { content: IApiContentResponseModel, isA
     const headerControls = props.content.properties as HeaderControlsPropertiesModel;
     const articleControls = props.content.properties as ArticleControlsPropertiesModel;
 
-    return (<header className="masthead" style={{ backgroundImage: `url('http://localhost:23142${mainBackgroundImage}')` }}>
+    return (<header className="masthead" style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_UMBRACO_BASE_URL}${mainBackgroundImage}')` }}>
         <div className="container position-relative px-4 px-lg-5">
             <div className="row gx-4 gx-lg-5 justify-content-center">
                 <div className="col-md-10 col-lg-8 col-xl-7">

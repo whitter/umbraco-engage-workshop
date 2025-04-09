@@ -5,7 +5,7 @@ This is a NextJs app iontegarted with the Umbraco Clean Starter Kit by Paul Seal
 You'll need a env.local file, I use this one
 
 ```typescript
-UMBRACO_BASE_URL=http://localhost:23142/
+NEXT_PUBLIC_UMBRACO_BASE_URL=http://localhost:23142/
 UMBRACO_REVALIDATE_SECRET='SOMETHING_SECRET'
 UMBRACO_REVALIDATE_ACCESS_CONTROL_ORIGIN="*"
 ```

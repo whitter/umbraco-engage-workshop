@@ -1,8 +1,9 @@
+import { TranslationModel } from "@/api-clean/model";
 import { ApiBlockItemModel, HomeContentResponseModel, IconLinkRowElementModel } from "@/api/model"
-import { DictionaryItem, getDictionValue, ImagesToImageMap, LinksToLinkMap } from "@/utls";
+import { getDictionValue, ImagesToImageMap, LinksToLinkMap } from "@/utls";
 import Image from "next/image";
 
-export const Footer = (props: { dictionary?: DictionaryItem[], homePage?: HomeContentResponseModel }) => {
+export const Footer = (props: { dictionary?: TranslationModel[], homePage?: HomeContentResponseModel }) => {
 
     const content = props.homePage?.properties;
 

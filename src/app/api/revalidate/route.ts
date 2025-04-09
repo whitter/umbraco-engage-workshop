@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const { contentPath, updateNavigation } = JSON.parse(text) as RevalidatePayload;
+    const { contentPath, updateNavigation, updateLocalisation } = JSON.parse(text) as RevalidatePayload;
 
     if(contentPath) {
         let url = removeLastSlash(contentPath)
@@ -42,6 +42,10 @@ export async function POST(request: NextRequest) {
       console.log(`revalidated layout navigation`)
     }
 
+    if(updateNavigation) {
+      revalidateTag('navigation')
+      console.log(`revalidated localisation`)
+    }
 
   } catch (error : any) {
     console.log(`Revalidate webhook error: ${error.message}`)
@@ -57,7 +61,8 @@ export async function POST(request: NextRequest) {
 
 interface RevalidatePayload {
     contentPath: string,
-    updateNavigation: boolean
+    updateNavigation: boolean,
+    updateLocalisation: boolean
 }
 
 function removeLastSlash(url: string): string {

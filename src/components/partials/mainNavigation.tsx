@@ -1,8 +1,9 @@
+import { TranslationModel } from "@/api-clean/model";
 import { HomeContentResponseModel } from "@/api/model"
 import { getNavigation } from "@/umbraco";
-import { DictionaryItem, getDictionValue } from "@/utls"
+import { getDictionValue } from "@/utls"
 
-export const MainNavigation = async (props: { dictionary?: DictionaryItem[], homePage?: HomeContentResponseModel }) => {
+export const MainNavigation = async (props: { dictionary?: TranslationModel[], homePage?: HomeContentResponseModel }) => {
 
     const navigation = await getNavigation();
 
