@@ -1,5 +1,6 @@
 import { ArticleControlsPropertiesModel, HeaderControlsPropertiesModel, IApiContentResponseModel, MainImageControlsPropertiesModel } from "@/api/model"
-import { ImagesToImageMap, getDictionValue, getDictionaryItems } from "@/utls";
+import { getDictionaryItems, getDictionValue } from "@/helpers/dictionary";
+import { ImagesToImageMap } from "@/helpers/image";
 import React from "react";
 
 export const PageHeader = async (props: { content: IApiContentResponseModel, isArticle?: boolean }) => {

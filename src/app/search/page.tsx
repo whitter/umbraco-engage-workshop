@@ -1,7 +1,7 @@
 import { SearchContentResponseModel, SEocontrolsContentModel } from "@/api/model";
 import { PageHeader } from "@/components/partials/pageHeader";
 import { getPage } from "@/umbraco";
-import { getDictionaryItems } from "@/utls";
+import { getDictionaryItems } from "@/helpers/dictionary";
 import SearchForm from "./searchForm";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

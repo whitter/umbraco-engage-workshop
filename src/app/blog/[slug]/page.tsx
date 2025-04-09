@@ -2,7 +2,7 @@ import { ArticleContentModel, ArticleListContentModel, SEocontrolsContentRespons
 import { PageHeader } from "@/components/partials/pageHeader";
 import { getArticles, getPage } from "@/umbraco";
 import { GetComponent } from "@/umbraco/components/GetComponent";
-import { getDictionaryItems } from "@/utls";
+import { getDictionaryItems } from "@/helpers/dictionary";
 import { ARTICLES_PAGESIZE, ARTICLES_ROOT_SEGENT_NAME } from "../constants";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

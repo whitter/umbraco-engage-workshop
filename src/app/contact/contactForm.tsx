@@ -1,5 +1,5 @@
 "use client";
-import { getDictionValue } from "@/utls";
+import { getDictionValue } from "@/helpers/dictionary";
 import { useState } from "react";
 import { EmailForm, TranslationModel } from "@/api-clean/model";
 import { postContactForm } from "./contactServerPost";

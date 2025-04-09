@@ -1,7 +1,7 @@
 "use client";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { getDictionValue } from "@/utls";
+import { getDictionValue } from "@/helpers/dictionary";
 import { useState } from "react";
 import { SearchResultsModel, TranslationModel } from "@/api-clean/model";
 import { getSearchResults } from './searchServerFetch';

@@ -1,6 +1,6 @@
 import { TranslationModel } from "@/api-clean/model";
 import { IApiElementModel, RichTextRowElementModel } from "@/api/model";
-import { getSpacingClass } from "@/utls";
+import { getSpacingClass } from "@/helpers/spacing";
 import HTMLParser from 'html-react-parser';
 
 export const RichTextRow = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {

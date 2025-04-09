@@ -1,6 +1,7 @@
 import { TranslationModel } from "@/api-clean/model";
 import { IApiElementModel, VideoRowPropertiesModel, VideoRowSettingsPropertiesModel } from "@/api/model";
-import { getSpacingClass, getYouTubeVideoId } from "@/utls";
+import { getSpacingClass } from "@/helpers/spacing";
+import { getYouTubeVideoId } from "@/helpers/youtube";
 
 export const VideoRow = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
 

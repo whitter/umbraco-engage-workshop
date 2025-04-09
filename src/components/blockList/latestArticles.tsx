@@ -1,6 +1,6 @@
 import { IApiElementModel, LatestArticlesRowElementModel, LatestArticlesRowSettingsElementModel } from "@/api/model";
 import { getArticles } from "@/umbraco";
-import { getSpacingClass } from "@/utls";
+import { getSpacingClass } from "@/helpers/spacing";
 import { LatestArticlesRow } from "./latestAriclesRow";
 import { Pagination } from "../partials/pagination";
 import { ARTICLES_PAGESIZE } from "@/app/blog/constants";

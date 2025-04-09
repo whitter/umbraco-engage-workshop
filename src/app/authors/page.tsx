@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getDictionaryItems, getDictionValue, ImagesToImageMap } from "@/utls";
+import { getDictionaryItems, getDictionValue } from "@/helpers/dictionary";
+import { ImagesToImageMap } from "@/helpers/image";
 import { getAuthors, getPage } from "@/umbraco";
 import { PageHeader } from "@/components/partials/pageHeader";
 import {

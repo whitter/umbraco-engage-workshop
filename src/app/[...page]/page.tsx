@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/partials/pageHeader";
 import { getMeta } from "@/helpers/metaHelper";
 import { getContentPages, getPage } from "@/umbraco";
 import { GetComponent } from "@/umbraco/components/GetComponent";
-import { getDictionaryItems } from "@/utls";
+import { getDictionaryItems } from "@/helpers/dictionary";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 

@@ -1,6 +1,8 @@
 import { TranslationModel } from "@/api-clean/model";
 import { ApiBlockItemModel, HomeContentResponseModel, IconLinkRowElementModel } from "@/api/model"
-import { getDictionValue, ImagesToImageMap, LinksToLinkMap } from "@/utls";
+import { getDictionValue } from "@/helpers/dictionary";
+import { ImagesToImageMap } from "@/helpers/image";
+import { LinksToLinkMap } from "@/helpers/links";
 import Image from "next/image";
 
 export const Footer = (props: { dictionary?: TranslationModel[], homePage?: HomeContentResponseModel }) => {

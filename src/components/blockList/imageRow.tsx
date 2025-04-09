@@ -1,6 +1,7 @@
 import { TranslationModel } from "@/api-clean/model";
 import { IApiElementModel, ImageRowPropertiesModel } from "@/api/model";
-import { getSpacingClass, ImagesToImageMap } from "@/utls";
+import { getSpacingClass } from "@/helpers/spacing";
+import { ImagesToImageMap } from "@/helpers/image";
 import Image from "next/image";
 
 export const ImageRow = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {

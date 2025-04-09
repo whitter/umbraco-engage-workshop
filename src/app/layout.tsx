@@ -5,7 +5,7 @@ import "../../node_modules/highlight.js/styles/vs2015.css";
 import "./globals.css";
 import { MainNavigation } from "@/components/partials/mainNavigation";
 import { Footer } from "@/components/partials/footer";
-import { getDictionaryItems } from "@/utls";
+import { getDictionaryItems } from "@/helpers/dictionary";
 import { getPage } from "@/umbraco";
 import { HomeContentResponseModel } from "@/api/model";
 

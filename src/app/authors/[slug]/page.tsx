@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { PageHeader } from '@/components/partials/pageHeader';
 import { getAuthors, getPage } from '@/umbraco';
-import { getDictionaryItems, ImagesToImageMap } from '@/utls';
+import { getDictionaryItems } from "@/helpers/dictionary";
+import { ImagesToImageMap } from "@/helpers/image";
 import { AuthorContentResponseModel, IApiMediaWithCropsModel, SEocontrolsContentResponseModel } from '@/api/model';
 import { GetComponent } from '@/umbraco/components/GetComponent';
 import { notFound } from 'next/navigation';
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const { slug } = await params;
 
-  const metaContent = await getPage<SEocontrolsContentResponseModel>(`authors/${slug}`);
+  const metaContent = await getPage<SEocontrolsContentResponseModel>(`${AUTHORS_ROOT_SEGENT_NAME}/${slug}`);
 
   if (!metaContent) return notFound();
 
@@ -36,11 +37,10 @@ export async function generateStaticParams() {
   return allSegments;
 }
 
-export default async function AuthorPage({ params }: { params: { slug: string } }) {
+export default async function AuthorPage({ params }: { params: Promise<{ slug: string }> }) {
 
   const dictionaryItems = await getDictionaryItems();
   const { slug } = await params;
-  const { authorSlug, pageNoSlug } = processSlugs(slug);
 
   const author = await getPage<AuthorContentResponseModel>(`authors/${slug}`);
 

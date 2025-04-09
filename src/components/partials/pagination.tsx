@@ -1,5 +1,5 @@
 import { ARTICLES_ROOT_SEGENT_NAME } from "@/app/blog/constants";
-import { getDictionValue, getDictionaryItems } from "@/utls";
+import { getDictionaryItems, getDictionValue } from "@/helpers/dictionary";
 
 export const Pagination = async (props: PaginationProps) => {
   const dictionary = await getDictionaryItems();

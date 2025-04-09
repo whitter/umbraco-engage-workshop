@@ -1,6 +1,6 @@
 import { TranslationModel } from "@/api-clean/model";
 import { ArticleContentResponseModel, AuthorContentResponseModel } from "@/api/model";
-import { getDictionValue } from "@/utls";
+import { getDictionValue } from "@/helpers/dictionary";
 import Link from "next/link";
 
 export const LatestArticlesRow = (props : {dictionary: TranslationModel[], article: ArticleContentResponseModel}) => {
