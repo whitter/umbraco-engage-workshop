@@ -6,20 +6,42 @@ import { GetComponent } from "@/umbraco/components/GetComponent";
 import { getDictionaryItems } from "@/helpers/dictionary";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getSegments } from "@/umbraco/engage";
 
-export async function generateMetadata() : Promise<Metadata> {
+export async function generateStaticParams() {
 
-  const metaContent = await getPage<SEocontrolsContentResponseModel>('');
+  const allSegments: { segment: string; }[] = [];
+
+    const segmentResponse = await getSegments('');
+
+    segmentResponse.data?.segments?.forEach((segment) => {
+      allSegments.push({
+        segment: segment.umbracoSegmentAlias!,
+      });
+    });
+
+    allSegments.push({
+      segment: "default",
+    });
+
+  return allSegments;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ segment: string }> }) : Promise<Metadata> {
+
+  const { segment } = await params;
+  const metaContent = await getPage<SEocontrolsContentResponseModel>('', segment);
 
   if (!metaContent) return notFound();
 
   return getMeta(metaContent);
 }
 
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ segment: string }> }) {
 
+  const { segment } = await params;
   const dictionaryItems = await getDictionaryItems();
-  const homePage = await getPage<HomeContentResponseModel>("");
+  const homePage = await getPage<HomeContentResponseModel>("", segment);
 
   if (!homePage) return notFound();
 

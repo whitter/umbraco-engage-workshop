@@ -6,21 +6,37 @@ import { GetComponent } from "@/umbraco/components/GetComponent";
 import { getDictionaryItems } from "@/helpers/dictionary";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getSegments } from "@/umbraco/engage";
 
 export async function generateStaticParams() {
 
   const pages = await getContentPages();
-  const allSegments = pages.map((page) => ({
-    page: page.route?.path?.split('/').filter((segment) => segment !== '') || [],
-  })) 
+  const allPaths: { segment: string; slug: string[] }[] = [];
 
-  return allSegments;
+  pages.map(async (page) => {
+    const segmentResponse = await getSegments(page.route?.path!);
+
+    segmentResponse.data?.segments?.forEach((segment) => {
+      allPaths.push({
+        segment: segment.umbracoSegmentAlias!,
+        slug: page.route!.path!.split("/"),
+      });
+    });
+
+    allPaths.push({
+      segment: "default",
+      slug: page.route!.path!.split("/"),
+    });
+
+  })
+
+  return allPaths;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ page: string[] }> }) : Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ segment: string, page: string[] }> }) : Promise<Metadata> {
 
-  const { page } = await params;
-  const metaContent = await getPage<SEocontrolsContentResponseModel>(`/${page.join('/')}/`);
+  const { segment, page } = await params;
+  const metaContent = await getPage<SEocontrolsContentResponseModel>(`/${page.join('/')}/`, segment);
 
   if (!metaContent) return notFound();
 
@@ -28,11 +44,11 @@ export async function generateMetadata({ params }: { params: Promise<{ page: str
 }
 
 
-export default async function Page({ params }: { params: Promise<{ page: string[] }> }) {
+export default async function Page({ params }: { params: Promise<{ segment: string, page: string[] }> }) {
 
   const dictionaryItems = await getDictionaryItems();
-  const { page } = await params;
-  const pageContent = await getPage<ContentContentResponseModel>(`/${page.join('/')}/`);
+  const { segment, page } = await params;
+  const pageContent = await getPage<ContentContentResponseModel>(`/${page.join('/')}/`, segment);
 
   return (
     <>

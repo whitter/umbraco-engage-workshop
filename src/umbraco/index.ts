@@ -1,9 +1,18 @@
 import { getContent20, getContentItemByPath20 } from "@/api/content/content";
 import { ArticleContentResponseModel, AuthorContentResponseModel, ContentContentResponseModel, PagedIApiContentResponseModel, VisibilityControlsContentResponseModel } from "@/api/model";
 
-export async function getPage<T>(handle: string): Promise<T | undefined> {
+export async function getPage<T>(handle: string, segment?: string): Promise<T | undefined> {
 
-  const response = await getContentItemByPath20(handle, {}, {});
+  let options : RequestInit = {};
+  if(segment && segment !== "default") {
+    options = {
+      headers: {
+        "Forced-Segment": segment,
+      }
+    };
+  }
+
+  const response = await getContentItemByPath20(handle, {}, options);
 
   if(response.status === 200) {
 
@@ -12,6 +21,9 @@ export async function getPage<T>(handle: string): Promise<T | undefined> {
 
   }
   else {
+    console.error("Error loading page");
+    console.error("Error segment", segment);
+    console.error("Error handle", handle);
     console.error("Error status", response.status);
     console.error("Error fetching page content", response.data);
   }
