@@ -1,0 +1,7 @@
+﻿{
+  "javascript": [
+    "~/App_Plugins/day-of-week-rule/segment-rule-day-of-week.js",
+    "~/App_Plugins/day-of-week-rule/segment-rule-day-of-week-editor.js",
+    "~/App_Plugins/day-of-week-rule/segment-rule-day-of-week-display.js"
+  ]
+}

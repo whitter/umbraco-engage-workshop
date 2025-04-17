@@ -1,0 +1,11 @@
+﻿<ums-segment-rule-editor name="$ctrl.rule.name" type="$ctrl.rule.type" save="$ctrl.save()">
+    <div class="ums-flexgrid__container ums-flexgrid__container--sm ums-flexgrid__container--flexstart is-animated">
+        <div class="ums-flexgrid__item ums-flexgrid__item--1-2">
+			<select class="ums-form__select"
+					ng-options="value as day for (value, day) in $ctrl.rule.data.days"
+					ng-model="$ctrl.config.dayOfWeek">
+				<option value="">- Select -</option>
+			</select>
+        </div>
+    </div>
+</ums-segment-rule-editor>
