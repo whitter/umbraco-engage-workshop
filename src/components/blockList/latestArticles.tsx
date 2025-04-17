@@ -3,7 +3,7 @@ import { getArticles } from "@/umbraco";
 import { getSpacingClass } from "@/helpers/spacing";
 import { LatestArticlesRow } from "./latestAriclesRow";
 import { Pagination } from "../partials/pagination";
-import { ARTICLES_PAGESIZE } from "@/app/[segment]/blog/constants";
+import { ARTICLES_PAGESIZE } from "@/app/blog/constants";
 import { TranslationModel } from "@/api-clean/model";
 
 export const LatestArticles = async (props: { dictionary: TranslationModel[], content?: IApiElementModel, settings?: IApiElementModel, pageNo?: number }) => {
