@@ -14,5 +14,5 @@ public class DayOfWeekSegmentRule : BaseSegmentRule
         => TypedConfig = typedConfig;
 
     public override bool IsSatisfied(IPersonalizationProfile context)
-        => context.Pageview.Timestamp.DayOfWeek == TypedConfig.DayOfWeek;
+        => TypedConfig.DayOfWeek.Contains(context.Pageview.Timestamp.DayOfWeek);
 }

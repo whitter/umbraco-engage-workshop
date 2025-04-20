@@ -1,6 +1,14 @@
-﻿<span class="ums-segmentrule__wrapper ums-segmentrule__wrapper--thin">
+﻿<span
+  ng-repeat="dayOfWeek in $ctrl.config.dayOfWeek track by $index"
+  class="ums-segmentrule__wrapper"
+>
   <span
+    ng-if="$index > 0"
+    class="ums-segmentrule__divider ums-segmentinfo__parameter__text--light"
+    >or</span
+  >
+  <span
+    ng-bind="$ctrl.rule.data.days[dayOfWeek]"
     class="ums-segmentrule__rulecontent"
-    ng-bind="$ctrl.rule.data.days[$ctrl.config.dayOfWeek]"
-  ></span>
-</span>
+  ></span
+></span>

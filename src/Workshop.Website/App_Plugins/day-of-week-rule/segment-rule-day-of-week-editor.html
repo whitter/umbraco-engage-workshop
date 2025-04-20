@@ -11,9 +11,8 @@
         class="ums-form__select"
         ng-options="value as day for (value, day) in $ctrl.rule.data.days"
         ng-model="$ctrl.config.dayOfWeek"
-      >
-        <option value="">- Select -</option>
-      </select>
+        multiple
+      ></select>
     </div>
   </div>
 </ums-segment-rule-editor>

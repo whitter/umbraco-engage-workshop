@@ -9,7 +9,7 @@
       order: 4,
 
       defaultConfig: {
-        dayOfWeek: null,
+        dayOfWeek: [],
       },
 
       data: {
