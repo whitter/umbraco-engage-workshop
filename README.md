@@ -1,24 +1,15 @@
-This is a NextJs app iontegarted with the Umbraco Clean Starter Kit by Paul Seal
+## Umbraco Engage Headless Demo
 
-## Getting Started
+This is a headless instanmce of the [Clean Starter Kit](https://marketplace.umbraco.com/package/clean) by Paul Seal. This branch is the starting point for the workshop, it has NOT been integrated with Umbraco Engage. 
 
-You'll need a env.local file, I use this one
+The links below go to files in GitHub that require updating to integrate Umbraco Engage
 
-```typescript
-NEXT_PUBLIC_UMBRACO_BASE_URL=http://localhost:23142/
-UMBRACO_REVALIDATE_SECRET='SOMETHING_SECRET'
-UMBRACO_REVALIDATE_ACCESS_CONTROL_ORIGIN="*"
-```
+Engage Service Layer [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/umbraco/engage.ts]
 
-Then, run the development server:
+NextJs Middleware [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/middleware.ts]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Umbraco page fetch [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/umbraco/index.ts]
 
+Home Page [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/app/%5Bsegment%5D/page.tsx]
+
+Dynamic Pages [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/app/%5Bsegment%5D/%5B...page%5D/page.tsx]
