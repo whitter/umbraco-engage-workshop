@@ -12,6 +12,8 @@ export async function getPage<T>(handle: string): Promise<T | undefined> {
 
   }
   else {
+    console.error("Error loading page");
+    console.error("Error handle", handle);
     console.error("Error status", response.status);
     console.error("Error fetching page content", response.data);
   }
