@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { getActiveSegment, postPageView } from "./umbraco/engage";
-import { RemotePageViewResponseModel } from "./api-engage/model";
+import { NotPermittedDueToLicenseResult, RemotePageViewResponseModel, StatusCodeResult } from "./api-engage/model";
 
 const staticFileRegex = /\.(ico|png|jpg|jpeg|svg|webp|css|js|map)$/
 const EXTERNAL_VISITOR_ID_COOKIE_NAME = "external_visitor_id";
@@ -14,7 +14,7 @@ const middleware = async (request : NextRequest) => {
     return NextResponse.next()
   }
 
-  const trackingData = await postPageView(
+  const trackingDataResponse = await postPageView(
     request.url,
     getHeaders(request.headers),
     getUserAgent(request.headers),
@@ -23,36 +23,45 @@ const middleware = async (request : NextRequest) => {
     getExternalVisitorId(request.cookies)
   );
 
-  const f = trackingData.data as RemotePageViewResponseModel
+  if (trackingDataResponse && isRemotePageViewResponseModel(trackingDataResponse.data)) {
 
-  const segmentData = await getActiveSegment(
-    request.nextUrl.pathname,
-    "en-gb",
-    f.externalVisitorId!
-  );
+    const trackingData = trackingDataResponse.data;
 
-  let segment = "default";
+    const segmentData = await getActiveSegment(
+      request.nextUrl.pathname,
+      "en-gb",
+      trackingData.externalVisitorId!
+    );
+  
+    let segment = "default";
+  
+    console.log(segmentData.data.segments)
 
-  if (segmentData.data.segments?.length) {
-    segment = segmentData.data.segments[0].umbracoSegmentAlias!;
-  }
-
-  console.log(getExternalVisitorId(request.cookies))
-  console.log(segment)
-
-  request.nextUrl.pathname = `/${segment}${pathname}`;
-
-  const response = NextResponse.rewrite(request.nextUrl);
-
-  if (trackingData.data) {
+    if (segmentData.data.segments?.length) {
+      segment = segmentData.data.segments[0].umbracoSegmentAlias!;
+    }
+  
+    console.log(getExternalVisitorId(request.cookies))
+    console.log(segment)
+  
+    request.nextUrl.pathname = `/${segment}${pathname}`;
+  
+    const response = NextResponse.rewrite(request.nextUrl);
+  
     response.cookies.set(
       EXTERNAL_VISITOR_ID_COOKIE_NAME,
-      f.externalVisitorId!
+      trackingData.externalVisitorId!
     );
+
+    return response;
   }
 
-  return response;
+  return NextResponse.next();
 };
+
+function isRemotePageViewResponseModel(data: RemotePageViewResponseModel | NotPermittedDueToLicenseResult | StatusCodeResult): data is RemotePageViewResponseModel {
+  return data && typeof data === "object" && "externalVisitorId" in data;
+}
 
 export default middleware;
 
