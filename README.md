@@ -13,3 +13,12 @@ Umbraco page fetch [https://github.com/whitter/umbraco-engage-workshop/blob/fron
 Home Page [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/app/%5Bsegment%5D/page.tsx]
 
 Dynamic Pages [https://github.com/whitter/umbraco-engage-workshop/blob/frontend-with-segments/src/app/%5Bsegment%5D/%5B...page%5D/page.tsx]
+
+
+You need a .env.local file
+
+```
+NEXT_PUBLIC_UMBRACO_BASE_URL=http://localhost:23142
+UMBRACO_REVALIDATE_SECRET='SOMETHING_SECRET'
+UMBRACO_REVALIDATE_ACCESS_CONTROL_ORIGIN="*"
+```
