@@ -5,6 +5,7 @@ import { NotPermittedDueToLicenseResult, RemotePageViewResponseModel, StatusCode
 
 const staticFileRegex = /\.(ico|png|jpg|jpeg|svg|webp|css|js|map)$/
 const EXTERNAL_VISITOR_ID_COOKIE_NAME = "external_visitor_id";
+const DEFAULT_SEGENT_NAME = "default";
 
 const middleware = async (request : NextRequest) => {
 
@@ -23,6 +24,13 @@ const middleware = async (request : NextRequest) => {
     getExternalVisitorId(request.cookies)
   );
 
+  if(trackingDataResponse && trackingDataResponse.status as any === 404) { 
+    request.nextUrl.pathname = `/${DEFAULT_SEGENT_NAME}${pathname}`;
+    const response = NextResponse.rewrite(request.nextUrl);
+    response.cookies.delete(EXTERNAL_VISITOR_ID_COOKIE_NAME);
+    return response
+  }
+
   if (trackingDataResponse && isRemotePageViewResponseModel(trackingDataResponse.data)) {
 
     const trackingData = trackingDataResponse.data;
@@ -33,16 +41,12 @@ const middleware = async (request : NextRequest) => {
       trackingData.externalVisitorId!
     );
   
-    let segment = "default";
-  
     console.log(segmentData.data.segments)
+    let segment = DEFAULT_SEGENT_NAME;
 
     if (segmentData.data.segments?.length) {
       segment = segmentData.data.segments[0].umbracoSegmentAlias!;
     }
-  
-    console.log(getExternalVisitorId(request.cookies))
-    console.log(segment)
   
     request.nextUrl.pathname = `/${segment}${pathname}`;
   
