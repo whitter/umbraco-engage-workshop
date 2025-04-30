@@ -5,9 +5,10 @@ namespace Workshop.Website.Revalidate
     public class NextJsRevalidateOptions
     {
         [Required]
+        public bool Enabled { get; set; }
+        
         public string? WebHookUrls { get; set; } = null;
 
-        [Required]
         public string WebHookSecret { get; set; } = string.Empty;
 
     }
